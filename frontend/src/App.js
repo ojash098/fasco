@@ -20,9 +20,16 @@ function App() {
 
   const fetchProducts = async () => {
     try {
+      console.log('Fetching products...');
       const response = await fetch('/api/products');
-      const data = await response.json();
-      setProducts(data);
+      console.log('Response status:', response.status);
+      if (response.ok) {
+        const data = await response.json();
+        console.log('Products loaded:', data.length);
+        setProducts(data);
+      } else {
+        console.error('Failed to fetch products:', response.status, response.statusText);
+      }
       setLoading(false);
     } catch (error) {
       console.error('Error fetching products:', error);

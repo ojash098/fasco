@@ -9,6 +9,11 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
+// Test endpoint
+app.get('/api/test', (req, res) => {
+  res.json({ message: 'Backend is working!', timestamp: new Date().toISOString() });
+});
+
 // Sample data - In a real app, this would come from a database
 const products = [
   {
@@ -102,6 +107,7 @@ const testimonials = [
 
 // Routes
 app.get('/api/products', (req, res) => {
+  console.log('Products endpoint called');
   res.json(products);
 });
 
