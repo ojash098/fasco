@@ -10,6 +10,7 @@ The backend is already configured with:
 - `render.yaml` for Render deployment
 - CORS configured to accept requests from frontend
 - Environment variables for production
+- Proper start command using `npm start`
 
 ### 2. Deploy to Render
 
@@ -23,6 +24,7 @@ The backend is already configured with:
 3. **Configure Environment Variables** (in Render dashboard):
    ```
    NODE_ENV=production
+   PORT=10000
    FRONTEND_URL=https://your-vercel-frontend-url.vercel.app
    ```
 
@@ -73,6 +75,7 @@ After deployment, update the environment variable in Vercel dashboard:
 ### Backend (Render)
 - `render.yaml` - Render deployment configuration
 - `backend/server.js` - Express server with CORS configuration
+- `package.json` - Contains `npm start` script for Render
 
 ### Frontend (Vercel)
 - `vercel.json` - Vercel deployment configuration
@@ -84,6 +87,7 @@ After deployment, update the environment variable in Vercel dashboard:
 ### Backend (Render)
 ```env
 NODE_ENV=production
+PORT=10000
 FRONTEND_URL=https://your-vercel-frontend-url.vercel.app
 ```
 
@@ -109,9 +113,10 @@ curl https://your-backend-url.onrender.com/api/products
 ## Troubleshooting
 
 ### Backend Issues
-1. **CORS errors**: Check `FRONTEND_URL` environment variable
-2. **API not responding**: Check Render logs
-3. **Build failures**: Check `render.yaml` configuration
+1. **Module not found errors**: The `render.yaml` now uses `npm start` which correctly points to `backend/server.js`
+2. **CORS errors**: Check `FRONTEND_URL` environment variable
+3. **API not responding**: Check Render logs
+4. **Build failures**: Check `render.yaml` configuration
 
 ### Frontend Issues
 1. **API calls failing**: Check `REACT_APP_API_URL` environment variable
