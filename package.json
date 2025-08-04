@@ -2,7 +2,6 @@
   "name": "e-commerce-clothing",
   "version": "1.0.0",
   "description": "A basic e-commerce clothing website with React frontend and Node.js backend",
-  "main": "server.js",
   "scripts": {
     "start": "node backend/server.js",
     "server": "nodemon backend/server.js",

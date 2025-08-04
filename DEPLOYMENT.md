@@ -10,7 +10,7 @@ The backend is already configured with:
 - `render.yaml` for Render deployment
 - CORS configured to accept requests from frontend
 - Environment variables for production
-- Proper start command using `npm start`
+- Proper start command using `node backend/server.js`
 
 ### 2. Deploy to Render
 
@@ -75,7 +75,7 @@ After deployment, update the environment variable in Vercel dashboard:
 ### Backend (Render)
 - `render.yaml` - Render deployment configuration
 - `backend/server.js` - Express server with CORS configuration
-- `package.json` - Contains `npm start` script for Render
+- `package.json` - Contains start script and dependencies (no main field)
 
 ### Frontend (Vercel)
 - `vercel.json` - Vercel deployment configuration
@@ -113,7 +113,7 @@ curl https://your-backend-url.onrender.com/api/products
 ## Troubleshooting
 
 ### Backend Issues
-1. **Module not found errors**: The `render.yaml` now uses `npm start` which correctly points to `backend/server.js`
+1. **Module not found errors**: Fixed by removing `main` field from `package.json` and using explicit `node backend/server.js` command
 2. **CORS errors**: Check `FRONTEND_URL` environment variable
 3. **API not responding**: Check Render logs
 4. **Build failures**: Check `render.yaml` configuration
