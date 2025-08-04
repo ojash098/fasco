@@ -6,6 +6,7 @@ import Products from './components/Products';
 import ProductDetail from './components/ProductDetail';
 import Cart from './components/Cart';
 import Footer from './components/Footer';
+import { API_ENDPOINTS } from './config';
 import './App.css';
 
 function App() {
@@ -21,7 +22,7 @@ function App() {
   const fetchProducts = async () => {
     try {
       console.log('Fetching products...');
-      const response = await fetch('/api/products');
+      const response = await fetch(API_ENDPOINTS.PRODUCTS);
       console.log('Response status:', response.status);
       if (response.ok) {
         const data = await response.json();
@@ -39,7 +40,7 @@ function App() {
 
   const addToCart = async (productId, quantity = 1) => {
     try {
-      const response = await fetch('/api/cart', {
+      const response = await fetch(API_ENDPOINTS.CART, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -55,7 +56,7 @@ function App() {
 
   const updateCartItem = async (productId, quantity) => {
     try {
-      const response = await fetch(`/api/cart/${productId}`, {
+      const response = await fetch(API_ENDPOINTS.CART_ITEM(productId), {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -71,7 +72,7 @@ function App() {
 
   const removeFromCart = async (productId) => {
     try {
-      const response = await fetch(`/api/cart/${productId}`, {
+      const response = await fetch(API_ENDPOINTS.CART_ITEM(productId), {
         method: 'DELETE',
       });
       const updatedCart = await response.json();
@@ -83,7 +84,7 @@ function App() {
 
   const clearCart = async () => {
     try {
-      await fetch('/api/cart', {
+      await fetch(API_ENDPOINTS.CART, {
         method: 'DELETE',
       });
       setCart([]);

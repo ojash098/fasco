@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import { API_ENDPOINTS } from '../config';
 import './ProductDetail.css';
 
 const ProductDetail = ({ addToCart }) => {
@@ -12,7 +13,7 @@ const ProductDetail = ({ addToCart }) => {
 
   const fetchProduct = useCallback(async () => {
     try {
-      const response = await fetch(`/api/products/${id}`);
+      const response = await fetch(API_ENDPOINTS.PRODUCT(id));
       if (response.ok) {
         const data = await response.json();
         setProduct(data);
